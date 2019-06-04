@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castle-web
+spec:
+  selector:
+    matchLabels:
+      app: castle-web
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: castle-web
+    spec:
+      containers:
+      - name: castle-web
+        image: asia.gcr.io/castle-242508/castle-web:0.1.0
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: castle-web
+spec:
+  selector:
+    app: castle-web
+  ports:
+  - port: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: castle-web
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: castle-web
+          servicePort: 80
