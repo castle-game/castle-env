@@ -12,3 +12,7 @@ steps:
       - gcloud auth activate-service-account --key-file=key.json
       - gcloud container clusters get-credentials castle-cluster --zone us-west1-a --project castle-242508
       - kubectl apply -f dev
+    when:
+      event:
+        exclude:
+          - pull_request

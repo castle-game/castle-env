@@ -1,3 +1,5 @@
 = castle-environment
 
+image:https://cloud.drone.io/api/badges/castle-game/castle-environment/status.svg[Build status, link=https://cloud.drone.io/castle-game/castle-environment]
+
 Environment configuration for Castle.
