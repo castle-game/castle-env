@@ -10,6 +10,7 @@ steps:
     commands:
       - printf "%s" "$gcloud_json_key" > key.json
       - gcloud auth activate-service-account --key-file=key.json
+      - rm key.json
       - gcloud container clusters get-credentials castle-cluster --zone us-west1-a --project castle-242508
       - kubectl apply -f dev
     when:
