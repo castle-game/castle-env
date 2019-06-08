@@ -1,0 +1,14 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: deploy
+    image: google/cloud-sdk
+    environment:
+      gcloud_json_key:
+        from_secret: gcloud_json_key
+    commands:
+      - printf "%s" "$gcloud_json_key" > key.json
+      - gcloud auth activate-service-account --key-file=key.json
+      - gcloud container clusters get-credentials castle-cluster --zone us-west1-a --project castle-242508
+      - kubectl apply -f dev
