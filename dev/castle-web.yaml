@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: castle-web
-        image: asia.gcr.io/castle-242508/castle-web:11
+        image: gcr.io/castle-242508/castle-web:13
         ports:
         - containerPort: 80
 
